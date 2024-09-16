@@ -2,7 +2,7 @@
 
 class Employees::RegistrationsController < Devise::RegistrationsController
   include RackSessionsFix
-  
+
   respond_to :json
   private
 
@@ -10,7 +10,7 @@ class Employees::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       render json: {
         status: {code: 200, message: 'Signed up successfully.'},
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
+        data: EmployeeSerializer.new(current_user).serializable_hash[:data][:attributes]
       }
     else
       render json: {
