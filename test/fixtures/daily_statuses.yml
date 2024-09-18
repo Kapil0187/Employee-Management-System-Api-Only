@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  total_hours: 2024-09-18 16:14:09
+  discription: MyString
+  date: 2024-09-18
+
+two:
+  employee: two
+  total_hours: 2024-09-18 16:14:09
+  discription: MyString
+  date: 2024-09-18

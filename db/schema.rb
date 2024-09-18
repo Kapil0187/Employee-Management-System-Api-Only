@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_18_051929) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_18_104409) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,8 +22,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_051929) do
     t.string "country"
     t.integer "pin_code"
     t.string "address"
-    t.bigint "employees_id", null: false
-    t.index ["employees_id"], name: "index_addresses_on_employees_id"
+    t.bigint "employee_id", null: false
+    t.index ["employee_id"], name: "index_addresses_on_employee_id"
+  end
+
+  create_table "daily_statuses", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.time "total_hours"
+    t.string "discription"
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_daily_statuses_on_employee_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -42,5 +52,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_051929) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addresses", "employees", column: "employees_id"
+  add_foreign_key "addresses", "employees"
+  add_foreign_key "daily_statuses", "employees"
 end

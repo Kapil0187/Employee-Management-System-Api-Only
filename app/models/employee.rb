@@ -7,4 +7,5 @@ class Employee < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
   
   has_one :address
+  has_many :daily_statuses
 end
