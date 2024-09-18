@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_16_135422) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_18_051929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.integer "pin_code"
+    t.string "address"
+    t.bigint "employees_id", null: false
+    t.index ["employees_id"], name: "index_addresses_on_employees_id"
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,11 +34,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_16_135422) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
     t.string "jti", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["jti"], name: "index_employees_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addresses", "employees", column: "employees_id"
 end
