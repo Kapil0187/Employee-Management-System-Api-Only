@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_18_104409) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_18_124858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_104409) do
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
+  create_table "leaves", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "leave_type"
+    t.index ["employee_id"], name: "index_leaves_on_employee_id"
+  end
+
   add_foreign_key "addresses", "employees"
   add_foreign_key "daily_statuses", "employees"
+  add_foreign_key "leaves", "employees"
 end

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :addresses
   end
   resources :daily_statuses
+  resources :leaves
   
   # Defines the root path route ("/")
   # root "posts#index"
