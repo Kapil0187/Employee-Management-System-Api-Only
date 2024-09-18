@@ -8,4 +8,6 @@ class Employee < ApplicationRecord
   
   has_one :address
   has_many :daily_statuses
+  has_many :leaves
+  has_many :salary
 end
