@@ -4,12 +4,12 @@ class LeavesController < ApplicationController
   end
 
   def create
-    @leave = Leave.create(leave_params) 
-    if @leave.save 
-      render json: @leave, status:200
+    leave = Leave.create(leave_params) 
+    if leave.save 
+      render json: leave, status:200
     end
   end
-          
+
   def destroy
     leave = Leave.find_by(id: params[:id])
     leave.destroy
