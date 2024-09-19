@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :daily_statuses
   resources :leaves
   resources :salaries
+  resources :projects
+  resources :assignments
   # Defines the root path route ("/")
   # root "posts#index"
 end

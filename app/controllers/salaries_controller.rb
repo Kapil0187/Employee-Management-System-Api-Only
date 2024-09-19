@@ -14,7 +14,7 @@ class SalariesController < ApplicationController
 
   def update
     salary = Salary.find_by(employee_id: params[:employee_id])
-    if salary.update(salary_params)
+    if salary.update(salary_params) 
       render json: salary, status: :ok
     end
   end 

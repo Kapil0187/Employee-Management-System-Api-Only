@@ -15,6 +15,7 @@ class LeavesController < ApplicationController
     leave.destroy
     render json: { message: 'leave deleted successfully' }, status: :no_content
   end
+  
   private
 
   def leave_params

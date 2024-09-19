@@ -29,12 +29,12 @@ class AddressesController < ApplicationController
 
   def set_employee
     @employee = Employee.find_by(id: params[:id])
-    render json: { error: 'Employee not found' }, status: :not_found unless @employee
+    render json: { error: 'Employee not found' }, status: :not_found
   end 
 
   def set_address
     @address = Address.find_by(id: params[:id])
-    render json: { error: 'Address not found' }, status: :not_found unless @address
+    render json: { error: 'Address not found' }, status: :not_found 
   end
 
   def address_params

@@ -3,7 +3,6 @@ class DailyStatusesController < ApplicationController
     
   end
 
-
   def create
     daily_status = DailyStatus.create(daily_status_params)
     if daily_status.save 
