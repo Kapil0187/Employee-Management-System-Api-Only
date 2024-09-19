@@ -17,12 +17,14 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :employees do
     resources :addresses
+    resources :roles
   end
   resources :daily_statuses
   resources :leaves
   resources :salaries
   resources :projects
   resources :assignments
+  resources :departments
   # Defines the root path route ("/")
   # root "posts#index"
 end

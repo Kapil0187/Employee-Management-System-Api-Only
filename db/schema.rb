@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_18_143505) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_19_061802) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,6 +48,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_143505) do
     t.index ["employee_id"], name: "index_daily_statuses_on_employee_id"
   end
 
+  create_table "departments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_143505) do
     t.string "jti", null: false
     t.string "first_name"
     t.string "last_name"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_employees_on_department_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["jti"], name: "index_employees_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
@@ -81,6 +89,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_143505) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.bigint "employee_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_roles_on_employee_id"
+  end
+
   create_table "salaries", force: :cascade do |t|
     t.bigint "employee_id", null: false
     t.date "date"
@@ -94,6 +110,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_18_143505) do
   add_foreign_key "assignments", "employees"
   add_foreign_key "assignments", "projects"
   add_foreign_key "daily_statuses", "employees"
+  add_foreign_key "employees", "departments"
   add_foreign_key "leaves", "employees"
+  add_foreign_key "roles", "employees"
   add_foreign_key "salaries", "employees"
 end

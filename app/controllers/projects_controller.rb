@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
       render json: project, status: 200
     end
   end
-
+  
   private
   def project_params
     params.permit(:name,:description)
