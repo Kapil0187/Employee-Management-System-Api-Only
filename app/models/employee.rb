@@ -5,11 +5,12 @@ class Employee < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
-  
-  has_one :address 
-  has_many :daily_statuses 
-  has_many :leaves 
-  has_many :salary 
-  has_many :assignments 
+
+  validates :first_name, :last_name, :department_id, :email, presence: true
+  has_one :address
+  has_many :daily_statuses
+  has_many :leaves
+  has_many :salary
+  has_many :assignments
   has_many :projects, through: :assignments
 end

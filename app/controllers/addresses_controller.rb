@@ -1,15 +1,14 @@
 class AddressesController < ApplicationController
-  before_action :set_employee, only: [:create, :update, :destroy]
-  before_action :set_address, only: [:update,:destroy]
+  before_action :set_employee, only: %i[create update destroy]
+  before_action :set_address, only: %i[update destroy]
   def index
-    
   end
 
   def create
     @address = @employee.create_address(address_params)
-    if @address.save 
-      render json: @address, status:200
-    end
+    return unless @address.save
+
+    render json: @address, status: 200
   end
 
   def update
@@ -30,14 +29,14 @@ class AddressesController < ApplicationController
   def set_employee
     @employee = Employee.find_by(id: params[:id])
     render json: { error: 'Employee not found' }, status: :not_found
-  end 
+  end
 
   def set_address
     @address = Address.find_by(id: params[:id])
-    render json: { error: 'Address not found' }, status: :not_found 
+    render json: { error: 'Address not found' }, status: :not_found
   end
 
   def address_params
-    params.permit(:city,:state,:country,:address,:pin_code)
+    params.permit(:city, :state, :country, :address, :pin_code)
   end
 end
