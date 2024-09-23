@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :update, :destroy]
+  before_action :set_employee, only: %i[show update destroy]
 
   def index
     employees = Employee.all
@@ -28,7 +28,7 @@ class EmployeesController < ApplicationController
   def set_employee
     @employee = Employee.find_by(id: params[:id])
     render json: { error: 'Employee not found' }, status: :not_found unless @employee
-  end   
+  end
 
   def employee_params
     params.require(:employee).permit(:first_name, :last_name)
