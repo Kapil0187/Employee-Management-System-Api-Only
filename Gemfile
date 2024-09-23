@@ -67,3 +67,7 @@ gem 'jsonapi-serializer'
 gem 'rack-cors'
 
 gem 'rubocop', require: false
+
+# gem 'simplecov', require: false, group: :test
+gem 'simplecov'
+gem 'simplecov-rcov'
